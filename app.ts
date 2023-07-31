@@ -88,8 +88,135 @@ testAnyArray = ["hello", 1, "world", 2, false];
 let sayHi = () => {
     console.log("Hello world");
 }
-
 sayHi();
+
+let funcReturString = (): string => {
+    return "Hello world";
+}
+console.log(funcReturString());
+
+// Function with parameters, return type of number
+let sumFunc = (a: number, b: number): number => {
+    return a + b;
+}
+
+console.log(sumFunc(1, 2));
+
+
+// Type aliases
+type User = {
+    name: string;
+    age: number;
+    isMale: boolean;
+};
+
+/* let func = (user: { name: string; age: number; isMale: boolean; }): void => {
+    console.log(user);
+} */
+
+let func = (user: User): void => {
+    console.log(user.age)
+}
+
+type myFunc = (a: number, b: string) => void
+
+let writeLog: myFunc = (num, str) => {
+    console.log(num + " times " + str)
+}
+
+type User2 = {
+    name: string;
+    age: number;
+    isMale: boolean;
+    phone?: string;
+    theme: "dark" | "light";
+};
+
+const userWithTheme: User2 = {
+    name: "John",
+    age: 18,
+    isMale: true,
+    theme: "dark"
+};
+
+//  Interface
+interface IUser {
+    name: string;
+    age: number;
+    isMale: boolean;
+    phone?: string;
+    theme: "dark" | "light";
+};
+
+interface IEmployer extends IUser {
+    salary: number;
+    employeeId: number;
+}
+
+const employer: IEmployer = {
+    name: "John",
+    age: 18,
+    isMale: true,
+    theme: "dark",
+    salary: 1000,
+    employeeId: 1
+};
+
+//  Generics
+
+interface IAuthor {
+    name: string;
+    age: number;
+    isMale: boolean;
+}
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    content: string;
+    extra: IAuthor[] | ICategory[];
+}
+
+interface IPostBetter<T> {
+    id: number;
+    title: string;
+    content: string;
+    extra: T[];
+}
+
+const post: IPostBetter<IAuthor> = {
+    id: 1,
+    title: "Hello world",
+    content: "This is my first post",
+    extra: [
+        {
+            name: "John",
+            age: 18,
+            isMale: true
+        },
+        {
+            name: "Maya",
+            age: 19,
+            isMale: false
+        }
+    ]
+};
+
+
+
+
+
+
+
+
+
+
+
 
 
 
